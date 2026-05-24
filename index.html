@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>GunesI</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .container {
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .i_love_word {
+            /* Daha belirgin ve göz alıcı soft pembe tonu */
+            color: #ffb3c6; 
+            font-size: 1.2rem;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-weight: bold;
+            position: absolute;
+            /* Karmaşıklıktan uzak, temiz ve net bir parlama efekti */
+            text-shadow: 0 0 8px rgba(255, 179, 198, 0.8);
+            white-space: nowrap;
+            opacity: 0;
+            animation: heart-anim 4s infinite linear;
+        }
+
+        @keyframes heart-anim {
+            0% { 
+                opacity: 0; 
+                transform: translate3d(var(--x), var(--y), var(--z)) scale(0.85); 
+            }
+            50% { 
+                opacity: 1; 
+            }
+            100% { 
+                opacity: 0; 
+                transform: translate3d(var(--x), var(--y), var(--z)) scale(1.05); 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="heart-container"></div>
+
+    <script>
+        const container = document.getElementById('heart-container');
+        const totalWords = 160; 
+
+        function getHeartPoint(t) {
+            const x = 16 * Math.pow(Math.sin(t), 3);
+            const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+            return { x, y };
+        }
+
+        for (let i = 0; i < totalWords; i++) {
+            const word = document.createElement('div');
+            word.className = 'i_love_word';
+            word.innerText = 'I love you İ';
+
+            const t = (i / totalWords) * 2 * Math.PI;
+            const point = getHeartPoint(t);
+
+            const scale = 14; 
+            const xPos = point.x * scale;
+            const yPos = point.y * scale;
+            const zPos = (Math.random() - 0.5) * 20; 
+
+            word.style.setProperty('--x', `${xPos}px`);
+            word.style.setProperty('--y', `${yPos}px`);
+            word.style.setProperty('--z', `${zPos}px`);
+
+            word.style.animationDelay = `${Math.random() * 4}s`;
+
+            container.appendChild(word);
+        }
+    </script>
+</body>
+</html>
