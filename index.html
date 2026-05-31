@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>GunesI</title>
+    <title>I Love You</title>
     <style>
         body {
             margin: 0;
@@ -21,13 +21,11 @@
         }
 
         .i_love_word {
-            /* Daha belirgin ve göz alıcı soft pembe tonu */
             color: #ffb3c6; 
             font-size: 1.2rem;
             font-family: 'Segoe UI', Arial, sans-serif;
             font-weight: bold;
             position: absolute;
-            /* Karmaşıklıktan uzak, temiz ve net bir parlama efekti */
             text-shadow: 0 0 8px rgba(255, 179, 198, 0.8);
             white-space: nowrap;
             opacity: 0;
@@ -66,7 +64,7 @@
         for (let i = 0; i < totalWords; i++) {
             const word = document.createElement('div');
             word.className = 'i_love_word';
-            word.innerText = 'I love you İ';
+            word.innerText = 'I love you ';
 
             const t = (i / totalWords) * 2 * Math.PI;
             const point = getHeartPoint(t);
